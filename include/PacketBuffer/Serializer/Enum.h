@@ -27,9 +27,37 @@
  * SUCH DAMAGE.
  */
 
-#include "Packer.h"
-#include "Unpacker.h"
+#ifndef PACKETBUFFER_SERIALIZER_ENUM_H
+#define PACKETBUFFER_SERIALIZER_ENUM_H
 
-#include "ObjectSerializer.h"
-#include "Serializer/Enum.h"
-#include "Serializer/Std.h"
+#include <type_traits>
+
+namespace PacketBuffer {
+
+	/**
+	 * A ObjectSerializer for C++ enum and enum class values.
+	 *
+	 * @tparam Enum 	the enum type
+	 */
+	template<typename Enum>
+	class ObjectSerializer<Enum, typename std::enable_if<std::is_enum<Enum>::value>::type> {
+	public:
+		/**
+		 * The underlying storage type for the Enum
+		 */
+		using UnderlyingType = typename std::underlying_type<Enum>::type;
+
+		template<typename Packer>
+		static void pack(Packer& packer, Enum object) {
+			packer((UnderlyingType) object);
+		}
+
+		template<typename Unpacker>
+		static void unpack(Unpacker& unpacker, Enum& object) {
+			unpacker((UnderlyingType&) object);
+		}
+	};
+
+}
+
+#endif //PACKETBUFFER_SERIALIZER_ENUM_H

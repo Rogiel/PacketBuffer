@@ -168,6 +168,15 @@ namespace PacketBuffer {
 			return *this;
 		}
 
+		/**
+		 * A packer method that does not pack anything.
+		 *
+		 * @return this
+		 */
+		inline Packer& pack() {
+			return *this;
+		}
+
 	public: // Integer types
 		/**
 		 * Packs a uint8_t integer value.
@@ -284,6 +293,30 @@ namespace PacketBuffer {
 			static_assert(sizeof(b) == 1, "bool size must be 1 byte");
 			boost::endian::conditional_reverse_inplace<boost::endian::order::native, Endianess>(b);
 			return pack(reinterpret_cast<const char*>(&b), sizeof(b));
+		}
+
+		/**
+		 * Packs a float value.
+		 *
+		 * @param f the float value to pack
+		 *
+		 * @return this
+		 */
+		inline Packer& pack(float f) {
+			static_assert(sizeof(f) == 4, "float size must be 4 bytes");
+			return pack(reinterpret_cast<const char*>(&f), sizeof(f));
+		}
+
+		/**
+		 * Packs a double value.
+		 *
+		 * @param d the double value to pack
+		 *
+		 * @return this
+		 */
+		inline Packer& pack(double d) {
+			static_assert(sizeof(d) == 8, "double size must be 8 bytes");
+			return pack(reinterpret_cast<const char*>(&d), sizeof(d));
 		}
 
 	public: // write operation

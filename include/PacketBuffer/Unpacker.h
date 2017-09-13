@@ -158,6 +158,15 @@ namespace PacketBuffer {
 			return *this;
 		}
 
+		/**
+		 * A unpacker method that does not unpack anything.
+		 *
+		 * @return this
+		 */
+		inline Unpacker& unpack() {
+			return *this;
+		}
+
 	public: // Integer types
 		/**
 		 * Unpacks a uint8_t integer value.
@@ -282,6 +291,32 @@ namespace PacketBuffer {
 			static_assert(sizeof(b) == 1, "bool size must be 1 byte");
 			unpack(reinterpret_cast<char*>(&b), sizeof(b));
 			boost::endian::conditional_reverse_inplace<Endianess, boost::endian::order::native>(b);
+			return *this;
+		}
+
+		/**
+		 * Unpacks a float value.
+		 *
+		 * @param f the float value to unpack
+		 *
+		 * @return this
+		 */
+		Unpacker& unpack(float& f) {
+			static_assert(sizeof(f) == 4, "float size must be 4 bytes");
+			unpack(reinterpret_cast<char*>(&f), sizeof(f));
+			return *this;
+		}
+
+		/**
+		 * Unpacks a double value.
+		 *
+		 * @param d the double value to unpack
+		 *
+		 * @return this
+		 */
+		Unpacker& unpack(double& d) {
+			static_assert(sizeof(d) == 8, "double size must be 8 bytes");
+			unpack(reinterpret_cast<char*>(&d), sizeof(d));
 			return *this;
 		}
 
