@@ -40,6 +40,17 @@ namespace PacketBuffer {
 	 * A ObjectSerializer for std::vector with elements of type <tt>R</tt>
 	 * using an allocator of type <tt>Allocator</tt>.
 	 *
+	 * Serialized data takes the format as:
+	 * @code
+	 * (
+	 * 	uint64_t: 	size
+	 * 	T: 			element[0]
+	 * 	T: 			element[1]
+	 * 	...
+	 * 	T: 			element[size-1]
+	 * )
+	 * @endcode
+	 *
 	 * @tparam T         the vector element type
 	 * @tparam Allocator the vector allocator type
 	 */

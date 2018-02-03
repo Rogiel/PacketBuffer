@@ -44,6 +44,16 @@ namespace PacketBuffer {
 	 * when serialized. Further changing the size of the array will cause a
 	 * change in the binary format of the packet.
 	 *
+	 * Serialized data takes the format as:
+	 * @code
+	 * (
+	 * 	T: first,
+	 * 	T: second,
+	 * 	...
+	 * 	T: last
+	 * )
+	 * @endcode
+	 *
 	 * @tparam T the array type
 	 * @tparam S the array fixed size
 	 */
@@ -75,6 +85,16 @@ namespace PacketBuffer {
 	 * when serialized. Further changing the size of the array will cause a
 	 * change in the binary format of the packet.
 	 *
+	 * Serialized data takes the format as:
+	 * @code
+	 * (
+	 * 	T: first,
+	 * 	T: second,
+	 * 	...
+	 * 	T: last
+	 * )
+	 * @endcode
+	 *
 	 * @tparam T the array type
 	 * @tparam S the array fixed size
 	 */
@@ -99,6 +119,16 @@ namespace PacketBuffer {
 	 * @note This serializer does not include the size of the original array
 	 * when serialized. Further changing the size of the array will cause a
 	 * change in the binary format of the packet.
+	 *
+	 * Serialized data takes the format as:
+	 * @code
+	 * (
+	 * 	T: first,
+	 * 	T: second,
+	 * 	...
+	 * 	T: last
+	 * )
+	 * @endcode
 	 *
 	 * @tparam T the array type
 	 * @tparam S the array fixed size

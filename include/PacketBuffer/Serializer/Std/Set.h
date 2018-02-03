@@ -42,6 +42,16 @@ namespace PacketBuffer {
 	 * comparison functor of type <tt>Compare</tt> and using an allocator
 	 * of type <tt>Allocator</tt>.
 	 *
+	 * @code
+	 * (
+	 * 	uint64_t: 	size
+	 * 	T: 			element[0]
+	 * 	T: 			element[1]
+	 * 	...
+	 * 	T: 			element[size-1]
+	 * )
+	 * @endcode
+	 *
 	 * @tparam T         the set element key
 	 * @tparam Compare   the set comparison functor
 	 * @tparam Allocator the set allocator type
@@ -75,6 +85,16 @@ namespace PacketBuffer {
 	 * A ObjectSerializer for std::unordered_set with elements of type
 	 * <tt>T</tt>, hash functor of type <tt>Hash</tt>, predicate of type
 	 * <tt>Predicate</tt> and using an allocator of type <tt>Allocator</tt>.
+	 *
+	 * @code
+	 * (
+	 * 	uint64_t: 	size
+	 * 	T: 			element[0]
+	 * 	T: 			element[1]
+	 * 	...
+	 * 	T: 			element[size-1]
+	 * )
+	 * @endcode
 	 *
 	 * @tparam T         the set element key
 	 * @tparam Hash      the set hash functor
