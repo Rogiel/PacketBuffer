@@ -87,7 +87,7 @@ namespace PacketBuffer {
 			uint64_t length;
 			unpacker(length);
 
-			string.resize(length);
+			string.resize((size_t) length);
 			unpacker.unpack(&string[0], string.size());
 		}
 	};

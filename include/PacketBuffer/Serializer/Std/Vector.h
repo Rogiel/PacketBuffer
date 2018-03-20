@@ -71,7 +71,7 @@ namespace PacketBuffer {
 			uint64_t items;
 			unpacker(items);
 
-			vector.resize(items);
+			vector.resize((size_t) items);
 			for(int i = 0; i < items; i++) {
 				unpacker(vector[i]);
 			}
