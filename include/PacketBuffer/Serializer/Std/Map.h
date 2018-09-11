@@ -65,7 +65,7 @@ namespace PacketBuffer {
 			uint64_t items;
 			unpacker(items);
 
-			for(int i = 0; i < items; i++) {
+			for(uint64_t i = 0; i < items; i++) {
 				std::pair<K, V> entry;
 				unpacker(entry);
 				map.insert(std::move(entry));
@@ -100,7 +100,7 @@ namespace PacketBuffer {
 			uint64_t items;
 			unpacker(items);
 
-			for(int i = 0; i < items; i++) {
+			for(uint64_t i = 0; i < items; i++) {
 				std::pair<K, V> entry;
 				unpacker(entry);
 				map.insert(std::move(entry));

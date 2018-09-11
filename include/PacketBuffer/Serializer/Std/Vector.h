@@ -61,7 +61,7 @@ namespace PacketBuffer {
 		static inline void pack(Packer& packer, const std::vector<T, Allocator>& vector) {
 			auto items = static_cast<uint64_t>(vector.size());
 			packer(items);
-			for(int i = 0; i < items; i++) {
+			for(uint64_t i = 0; i < items; i++) {
 				packer(vector[i]);
 			}
 		}
@@ -72,7 +72,7 @@ namespace PacketBuffer {
 			unpacker(items);
 
 			vector.resize((size_t) items);
-			for(int i = 0; i < items; i++) {
+			for(uint64_t i = 0; i < items; i++) {
 				unpacker(vector[i]);
 			}
 		}
