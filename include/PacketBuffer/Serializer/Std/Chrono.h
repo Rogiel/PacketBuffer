@@ -71,14 +71,17 @@ namespace PacketBuffer {
 	public:
 		template<typename Packer>
 		static inline void pack(Packer& packer, const std::chrono::time_point<Clock, Duration>& point) {
-			packer(point.time_since_epoch());
+			auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
+					point.time_since_epoch());
+			packer(duration);
 		}
 
 		template<typename Unpacker>
 		static inline void unpack(Unpacker& unpacker, std::chrono::time_point<Clock, Duration>& point) {
-			Duration d;
-			unpacker(d);
-			point = std::chrono::time_point<Clock, Duration>(d);
+			std::chrono::milliseconds duration;
+			unpacker(duration);
+			point = std::chrono::time_point<Clock, Duration>(
+					std::chrono::duration_cast<Duration>(duration));
 		}
 	};
 
