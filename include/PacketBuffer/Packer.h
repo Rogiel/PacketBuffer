@@ -291,7 +291,6 @@ namespace PacketBuffer {
 		 */
 		inline Packer& pack(bool b) {
 			static_assert(sizeof(b) == 1, "bool size must be 1 byte");
-			boost::endian::conditional_reverse_inplace<boost::endian::order::native, Endianess>(b);
 			return pack(reinterpret_cast<const char*>(&b), sizeof(b));
 		}
 
